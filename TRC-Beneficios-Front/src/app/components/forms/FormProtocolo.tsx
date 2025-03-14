@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { useDataAcompanharProtocolStore } from "@/lib/store/dataAcompanharProtocolStore";
 import docPenCredencial from "@/lib/service/docPen.service";
 import { useDadosDocPenStore } from "@/lib/store/dataDocPenStore";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNBTUFjY291bnROYW1lIjoianVsbHlhbmEubWVsbyIsIm5hbWUiOiJDTj1KdWxseWFuYSBHbGF1Y2lhIGRlIG1lbG8ifSwiaWF0IjoxNzM5Nzk5OTg5LCJleHAiOjE3NDAzMTgzODl9.atDPxZRmGhkjOPlgpSRAbOy2MTEbGCdGgMLh7pfklwU'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNBTUFjY291bnROYW1lIjoianVsbHlhbmEubWVsbyIsIm5hbWUiOiJDTj1KdWxseWFuYSBHbGF1Y2lhIGRlIG1lbG8ifSwiaWF0IjoxNzQxMjYyOTc1LCJleHAiOjE3NDE3ODEzNzV9.SYNpy0U4xCA9KwZ-HhgsRax9Iy0Ajx9DK7rG75Phnec'
 
 
 export default function FormProtocolo() {
@@ -40,8 +40,9 @@ const cpfBlur = () => {
       e.preventDefault()
     
       const resUsuario = await protocolService.postProtocol(protocolo,token)
-      const docPen = await docPenCredencial.docPen(protocolo.cpf, token)
-      console.log(docPen);
+      const docPen = await docPenCredencial.getdocPen(protocolo.cpf, token)
+
+
       
       if(resUsuario?.status === 200) { 
         setDataAcompanharProtocol(resUsuario.data[0])
@@ -64,10 +65,10 @@ const cpfBlur = () => {
            <form onSubmit={handleSubmit} className="flex flex-col justify-items-center items-center">
         <div className="bg-white w-[300px]   space-y-2">
           <div className=" ">
-            <LabelFormInput width="[300px]" label={"Nº Protocolo:"} colorBg={"[#EEEEEE]"} type={"text"} value={protocolo.protocolo} setValue={(e) => setProtocolo({ ...protocolo, protocolo: e.target.value })} required></LabelFormInput>
+            <LabelFormInput width="[300px]" label={"Nº Protocolo:"} colorBg={"[#EEEEEE]"} type={"text"} value={protocolo.protocolo} setValue={(e) => setProtocolo({ ...protocolo, protocolo: e.target.value })} required border={""}></LabelFormInput>
           </div>
           <div className="">
-          <LabelFormInput width="[300px]" label={"CPF:"} colorBg={"[#EEEEEE]"} type={"text"} value={protocolo.cpf} setValue={(e) => setProtocolo({ ...protocolo, cpf: e.target.value })} onBlur={cpfBlur} required maxNum={11} placeHolder=" Digite um CPF somente números"></LabelFormInput>
+          <LabelFormInput width="[300px]" label={"CPF:"} colorBg={"[#EEEEEE]"} type={"text"} value={protocolo.cpf} setValue={(e) => setProtocolo({ ...protocolo, cpf: e.target.value })} onBlur={cpfBlur} required maxNum={11} placeHolder=" Digite um CPF somente números" border={""}></LabelFormInput>
           </div>
           <div className="cursor-pointer w-full flex justify-end pt-3">
             <BotaoPesquisa name={"Pesquisar"} />

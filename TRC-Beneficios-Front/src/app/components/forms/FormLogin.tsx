@@ -24,34 +24,55 @@ export default function FormLogin() {
     const resUsuario = await authService.postLogin(user)
     console.log(resUsuario);
     
-    if(resUsuario?.status === 200) return router.push("/formulario-idoso")
+    if(resUsuario?.status === 200) return router.push("/dashboard")
 
   }
 
 
   return (
     <>
+    <div className="flex flex-col items-center md:gap-[180px]">
       <Header
         title={"CREDENCIAL DE ESTACIONAMENTO"}
         text={"Sistema Interno"} path={""}      
         ></Header>
 
-      <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center ">
-        <div className="pt-[180] text-[#46494C] font-semibold text-2xl">
+      <form onSubmit={handleSubmit} className="flex flex-col justify-items-center items-center">
+        <div className=" text-[#46494C] font-semibold text-2xl">
           LOGIN
         </div>
-        <div className="bg-white w-64  justify-evenly  space-y-5">
-          <div className="flex flex-row gap-2">
-            <LabelFormInput label={"Login:"} colorBg={"[#EEEEEE]"} type={"text"} value={user.username} setValue={(e) => setUser({...user, username: e.target.value})} required></LabelFormInput>
+        <div className="bg-white w-[300px]   space-y-2">
+          <div >
+            <LabelFormInput 
+            width="[300px]" 
+            label={"Login:"} 
+            colorBg={"[#EEEEEE]"} 
+            type={"text"} 
+            value={user.username} 
+            setValue={(e) => setUser({ ...user, username: e.target.value })} 
+            required 
+            border={""}
+            />
           </div>
-          <div className="flex flex-row gap-3">
-            <LabelFormInput label={"Senha:"} colorBg={"[#EEEEEE]"} type={"password"} value={user.password} setValue={(e) => setUser({...user, password: e.target.value})} required></LabelFormInput>
+          <div >
+            <LabelFormInput 
+            width="[300px]" 
+            label={"Senha:"} 
+            colorBg={"[#EEEEEE]"} 
+            type={"password"} 
+            value={user.password} 
+            setValue={(e) => setUser({ ...user, password: e.target.value })} 
+            required 
+            border={""}
+            />
           </div>
-          <div className="cursor-pointer w-full flex justify-end">
+          <div className="cursor-pointer w-full flex justify-end pt-3">
             <BotaoPesquisa name={"Pesquisar"} />
           </div>
         </div>
+        
       </form>
+      </div>
     </>
   );
 }

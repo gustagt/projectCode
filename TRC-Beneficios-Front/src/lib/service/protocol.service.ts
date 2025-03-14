@@ -10,7 +10,7 @@ const postProtocol = async (protocolo:IProtocolos, token?: string) => {
 
   
   try {
-    const res = await fetch(`${api}/protocolo/acmp/?id=${protocolo.protocolo}&cpf=${cpfNumber}`, config).then((res) =>
+    const res = await fetch(`${api}/protocolo/cpf/${cpfNumber}`, config).then((res) =>
       res.json()
     );
 

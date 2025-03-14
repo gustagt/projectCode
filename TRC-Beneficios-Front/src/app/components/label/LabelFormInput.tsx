@@ -1,13 +1,13 @@
 import { ChangeEventHandler } from "react";
 
-export default function LabelFormInput({ label, asterisco ,colorBg, value, setValue,type, maxNum, placeHolder, onBlur ,required,width }: LabelFormInputProps) {
+export default function LabelFormInput({ label, asterisco ,colorBg, value, setValue,type, maxNum, placeHolder, onBlur ,required,width, border }: LabelFormInputProps) {
     return (
 
-        <div className="flex flex-col gap-2 pt-2 md:flex pr-7 ">
+        <div className="flex flex-col  md:flex pr-7 ">
             <label className="font-semibold pb-0">
                 {label} <span className="text-alert font-bold">{asterisco}</span>
             </label>
-            <input maxLength={maxNum} type={type} value={value} onChange={setValue} required={required} className={ `w-${width} h-8 outline-none min-w-52 bg-${colorBg} pl-2 `} onBlur={onBlur} placeholder={placeHolder}/>
+            <input maxLength={maxNum} type={type} value={value} onChange={setValue} required={required} className={ `w-${width} h-8 outline-none border border-${border} min-w-52 bg-${colorBg} pl-2 `} onBlur={onBlur} placeholder={placeHolder}/>
         </div>
 
     )
@@ -25,4 +25,5 @@ type LabelFormInputProps = {
     setValue: ChangeEventHandler<HTMLInputElement>;
     required?: boolean;
     width?:string;
+    border:string
 }

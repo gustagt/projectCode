@@ -1,10 +1,10 @@
+import { IDataDocPen } from "../interfaces/IDataDocPen";
 import { api, requestConfig } from "../utils/config";
 
 
-const docPen = async (cpf:string, token?: string, ) => {
+const getdocPen = async (cpf:string, token?: string, ) => {
   const config = requestConfig("GET", null, token);
 
-  
   const cpfNumber = cpf.replace(/\D/g, '');
 
   try {
@@ -19,8 +19,26 @@ const docPen = async (cpf:string, token?: string, ) => {
 
 }
 
+
+const putdocPen = async (  dataDocPen: IDataDocPen, token?: string, id?: string ) => {
+  const config = requestConfig("PUT", dataDocPen , token);
+  
+
+  try {
+    const res = await fetch(`${api}/docPen/id/${id}`, config).then((res) =>
+      res.json()
+    );
+
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
+
+}
+
 const docPenCredencial = {
-    docPen,
+    getdocPen,
+    putdocPen
 };
 
 export default docPenCredencial;

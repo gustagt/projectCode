@@ -16,7 +16,7 @@ import maskCEP from "@/lib/utils/maskCEP"
 import maskTelCel from "@/lib/utils/maskTelCel"
 import { api } from "@/lib/utils/config"
 import { IForms } from "@/lib/interfaces/IForms"
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNBTUFjY291bnROYW1lIjoianVsbHlhbmEubWVsbyIsIm5hbWUiOiJDTj1KdWxseWFuYSBHbGF1Y2lhIGRlIG1lbG8ifSwiaWF0IjoxNzQwMzk4MzA3LCJleHAiOjE3NDA5MTY3MDd9.sWvXaffyTsd5diUtqxEsvXTsaHiwlrSD9EA4Vez7cO0'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNBTUFjY291bnROYW1lIjoianVsbHlhbmEubWVsbyIsIm5hbWUiOiJDTj1KdWxseWFuYSBHbGF1Y2lhIGRlIG1lbG8ifSwiaWF0IjoxNzQxMjYyOTc1LCJleHAiOjE3NDE3ODEzNzV9.SYNpy0U4xCA9KwZ-HhgsRax9Iy0Ajx9DK7rG75Phnec'
 
 
 export default function Form() {
@@ -169,46 +169,41 @@ export default function Form() {
                     <div className="grid grid-cols-[_1fr] sm:grid-cols-[_1fr] md:grid-cols-[1fr_350px] lg:grid-cols-[700px_1fr] ">
                         <div className="">
                             <LabelFormInput
-                                label={"Nome: "}
-                                asterisco="*"
-                                colorBg={"write"}
-                                type={"text"}
-                                value={beneficiario.nome || ""}
-                                setValue={(e) => setBeneficiario({ ...beneficiario, nome: e.target.value })}
-                                required
-                            />
+                                    label={"Nome: "}
+                                    asterisco="*"
+                                    colorBg={"write"}
+                                    type={"text"}
+                                    value={beneficiario.nome || ""}
+                                    setValue={(e) => setBeneficiario({ ...beneficiario, nome: e.target.value })}
+                                    required border={"none"}                            />
                         </div>
                         <div>
                             <LabelFormInput
-                                label={"CPF: "}
-                                asterisco="*"
-                                colorBg={"write"}
-                                type={"text"}
-                                value={beneficiario.cpf}
-                                setValue={(e) => {
-                                    const noMaskCpf = e.target.value;
-                                    const maskInCpf = maskCpf(noMaskCpf) || "";
-                                    setBeneficiario({ ...beneficiario, cpf:maskInCpf})
-                                }
-                                
-                            }
-                                onBlur={handleValidateCpf}
-                                required
-                                placeHolder=" Digite um CPF somente números"
-                            />
+                                    label={"CPF: "}
+                                    asterisco="*"
+                                    colorBg={"write"}
+                                    type={"text"}
+                                    value={beneficiario.cpf}
+                                    setValue={(e) => {
+                                        const noMaskCpf = e.target.value
+                                        const maskInCpf = maskCpf(noMaskCpf) || ""
+                                        setBeneficiario({ ...beneficiario, cpf: maskInCpf })
+                                    } }
+                                    onBlur={handleValidateCpf}
+                                    required
+                                    placeHolder=" Digite um CPF somente números" border={"none"}                            />
                         </div>
                     </div>
                     <div className=" grid grid-cols-[_1fr] sm:grid-cols-[_1fr] md:grid-cols-[1fr_350px] lg:grid-cols-[350px_350px_1fr]">
                         <div className="">
                             <LabelFormInput
-                                label={"Data de Nascimento: "}
-                                asterisco="*"
-                                colorBg={"write"}
-                                type={"date"}
-                                value={beneficiario.data_nascimento || ""}
-                                setValue={(e) => setBeneficiario({ ...beneficiario, data_nascimento: e.target.value })}
-                                required
-                            />
+                                    label={"Data de Nascimento: "}
+                                    asterisco="*"
+                                    colorBg={"write"}
+                                    type={"date"}
+                                    value={beneficiario.data_nascimento || ""}
+                                    setValue={(e) => setBeneficiario({ ...beneficiario, data_nascimento: e.target.value })}
+                                    required border={"none"}                            />
                         </div>
                         <div className="">
                             <LabelSelect
@@ -222,47 +217,44 @@ export default function Form() {
                         </div>
                         <div className="">
                             <LabelFormInput
-                                label={"E-mail: "}
-                                asterisco="*"
-                                colorBg={"write"}
-                                type={"email"}
-                                value={beneficiario.email || ""}
-                                setValue={(e) => setBeneficiario({ ...beneficiario, email: e.target.value })}
-                                required
-                            />
+                                    label={"E-mail: "}
+                                    asterisco="*"
+                                    colorBg={"write"}
+                                    type={"email"}
+                                    value={beneficiario.email || ""}
+                                    setValue={(e) => setBeneficiario({ ...beneficiario, email: e.target.value })}
+                                    required border={"none"}                            />
                         </div>
                     </div>
                     {pathname === "/formulario-deficiente" && <>
                         <div className="grid grid-cols-[_1fr] sm:grid-cols-[_1fr] md:grid-cols-[1fr_350px] lg:grid-cols-[350px_350px_1fr]">
                             <div>
                                 <LabelFormInput
-                                    label={"Telefone: "}
-                                    colorBg={"write"}
-                                    type={""} 
-                                    value={beneficiario.telefone || ""}
-                                    maxNum={13}
-                                    setValue={(e) => {
-                                        const telNoMask = e.target.value;
-                                        const telMask = maskTelCel(telNoMask) || "";
-                                        setBeneficiario({ ...beneficiario, telefone: telMask })
-                                    }}
-                                />
+                                        label={"Telefone: "}
+                                        colorBg={"write"}
+                                        type={""}
+                                        value={beneficiario.telefone || ""}
+                                        maxNum={13}
+                                        setValue={(e) => {
+                                            const telNoMask = e.target.value
+                                            const telMask = maskTelCel(telNoMask) || ""
+                                            setBeneficiario({ ...beneficiario, telefone: telMask })
+                                        } } border={"none"}                                />
                             </div>
                             <div>
                                 <LabelFormInput
-                                    label={"Celular: "}
-                                    asterisco="*"
-                                    colorBg={"write"}
-                                    type={""}
-                                    value={beneficiario.celular || ""}
-                                    maxNum={14}
-                                    setValue={(e) => {
-                                        const telNoMask = e.target.value;
-                                        const telMask = maskTelCel(telNoMask) || "";
-                                        setBeneficiario({ ...beneficiario, celular:telMask})
-                                    }}
-                                    required
-                                />
+                                        label={"Celular: "}
+                                        asterisco="*"
+                                        colorBg={"write"}
+                                        type={""}
+                                        value={beneficiario.celular || ""}
+                                        maxNum={14}
+                                        setValue={(e) => {
+                                            const telNoMask = e.target.value
+                                            const telMask = maskTelCel(telNoMask) || ""
+                                            setBeneficiario({ ...beneficiario, celular: telMask })
+                                        } }
+                                        required border={"none"}                                />
                             </div>
                             <div>
                                 <LabelFormInput
@@ -272,7 +264,7 @@ export default function Form() {
                                     type={""}
                                     value={beneficiario.deficiencia || ""}
                                     setValue={(e) => setBeneficiario({ ...beneficiario, deficiencia: e.target.value })}
-                                    required
+                                    required border={"none"}   
                                 />
                             </div></div></>}
 
@@ -289,7 +281,7 @@ export default function Form() {
                                         const telNoMask = e.target.value;
                                         const telMask = maskTelCel(telNoMask) || "";
                                         setBeneficiario({ ...beneficiario, telefone: telMask })
-                                    }}
+                                    }} border={"none"}   
                                 />
                             </div>
                             <div>
@@ -304,7 +296,7 @@ export default function Form() {
                                         const telNoMask = e.target.value;
                                         const telMask = maskTelCel(telNoMask) || "";
                                         setBeneficiario({ ...beneficiario, celular: telMask })
-                                    }}
+                                    }} border={"none"}   
                                     required />
                             </div>
                         </div>
@@ -338,7 +330,7 @@ export default function Form() {
                                     setBeneficiario({ ...beneficiario, cep: cepInMask })
                                 }}
                                 onBlur={consultaCep}
-                                required
+                                required border={"none"}   
                             />
                         </div>
                         <div>
@@ -349,7 +341,7 @@ export default function Form() {
                                 type={""}
                                 value={beneficiario.rua || ""}
                                 setValue={(e) => setBeneficiario({ ...beneficiario, rua: e.target.value })}
-                                required
+                                required border={"none"}   
                             />
                         </div>
                     </div>
@@ -362,7 +354,7 @@ export default function Form() {
                                 type={""}
                                 value={beneficiario.num || ""}
                                 setValue={(e) => setBeneficiario({ ...beneficiario, num: e.target.value })}
-                                required
+                                required border={"none"}   
                             />
                         </div>
                         <div className="">
@@ -372,6 +364,7 @@ export default function Form() {
                                 type={""}
                                 value={beneficiario.complemento || ""}
                                 setValue={(e) => setBeneficiario({ ...beneficiario, complemento: e.target.value })}
+                                border={"none"}   
                             />
                         </div>
                     </div>
@@ -383,7 +376,7 @@ export default function Form() {
                                 type={""}
                                 value={beneficiario.bairro || ""}
                                 setValue={(e) => setBeneficiario({ ...beneficiario, bairro: e.target.value })}
-                                required
+                                required border={"none"}   
                             />
                         </div>
                         <div>
@@ -394,7 +387,7 @@ export default function Form() {
                                 type={""}
                                 value={beneficiario.cidade || ""}
                                 setValue={(e) => setBeneficiario({ ...beneficiario, cidade: e.target.value })}
-                                required
+                                required border={"none"}   
                             />
                         </div>
                     </div>
@@ -404,7 +397,7 @@ export default function Form() {
                         type={"Extensões permitidas: doc, docx, pdf, jpg, jpeg, png."}
                         setValue={(e) => handleFileChange(e, "compEnd") }
                         required
-                        nameInput={""}
+                        nameInput={"compEnd"}
                     />
                     <span></span>
                 </div>

@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import dataBeneficiario from "@/lib/service/dataBeneficiario.service";
 import { useDadosUsuarioStore } from "@/lib/store/dataBeneficiarioStore";
 import { useDadosSegundaViaStore } from "@/lib/store/dataSegundaViaStore";
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNBTUFjY291bnROYW1lIjoianVsbHlhbmEubWVsbyIsIm5hbWUiOiJDTj1KdWxseWFuYSBHbGF1Y2lhIGRlIG1lbG8ifSwiaWF0IjoxNzQwMzk4MzA3LCJleHAiOjE3NDA5MTY3MDd9.sWvXaffyTsd5diUtqxEsvXTsaHiwlrSD9EA4Vez7cO0'
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNBTUFjY291bnROYW1lIjoianVsbHlhbmEubWVsbyIsIm5hbWUiOiJDTj1KdWxseWFuYSBHbGF1Y2lhIGRlIG1lbG8ifSwiaWF0IjoxNzQxMjYyOTc1LCJleHAiOjE3NDE3ODEzNzV9.SYNpy0U4xCA9KwZ-HhgsRax9Iy0Ajx9DK7rG75Phnec'
 
 
 export default function FormSegunda() {
@@ -43,11 +43,6 @@ const{setDadosSegundaVia} = useDadosSegundaViaStore()
       const resForm = await formSegundaVia.segundaVia(beneficiario.cpf, token, tipoCrd)
       const dataUser = await dataBeneficiario.dataBeneficiarioForm(beneficiario.cpf, token)
 
-      console.log(resForm);
-      
-      
-
-      
       if(resForm?.message === 'Credencial encontrada com sucesso.')  {
         setDadosUsuario(dataUser.data)
         setDadosSegundaVia(resForm.data)
@@ -69,7 +64,7 @@ const{setDadosSegundaVia} = useDadosSegundaViaStore()
       <form onSubmit={handleSubmit} className="bg-white flex flex-col justify-center  items-center  ">
         <div className="w-[300px] space-y-5">
           <div className="flex flex-row gap-3 ">
-            <LabelFormInput label={"CPF:"} colorBg={"[#EEEEEE]"} type={"text"} value={beneficiario.cpf} setValue={(e) => setBeneficiario({ ...beneficiario, cpf: e.target.value })} onBlur={cpfBlur} required maxNum={11} width="[300px]" placeHolder=" Digite um CPF somente números"></LabelFormInput>
+            <LabelFormInput label={"CPF:"} colorBg={"[#EEEEEE]"} type={"text"} value={beneficiario.cpf} setValue={(e) => setBeneficiario({ ...beneficiario, cpf: e.target.value })} onBlur={cpfBlur} required maxNum={11} width="[300px]" placeHolder=" Digite um CPF somente números" border={"none"}></LabelFormInput>
           </div>
           <div className="flex flex-col">
             <LabelFormRadio label={"Deficiente"} value={"deficiente"} familyName={"tipoCred"} id={"deficiente"} setValue={(e) => setTipoCrd(e.target.value)} required ></LabelFormRadio>
